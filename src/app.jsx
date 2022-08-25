@@ -13,7 +13,6 @@ import axios from "axios";
 
 const endPoint = "http://localhost:8000/api/movies";
 
-
 class App extends Component {
   state = {
     loading: true,
@@ -42,41 +41,21 @@ class App extends Component {
   // };
 
   async componentDidMount() {
-    // const movieRes = await fetch("http://localhost:8000/api/movies");
        axios
          .get(endPoint)
          .then((response) => this.setState({ movies: response.data }));
-    // const movies = await movieRes.json();
     console.log(this.state.response.data.moives);
 
-    // const _movies = (await axios(endPoint)).data;
-    // this.setState({ loading: false, _movies });
-
-    // const genreRes = await fetch("http://localhost:8000/api/genres");
      axios
        .get("http://localhost:8000/api/genres")
        .then((response) => this.setState({ genres: response.data.genres }));
-    // const genres = await genreRes.json();
-    // genres.unshift({ name: "All", _id: "all" });
-    // setTimeout(() => this.setState({ loading: false, movies, genres }), 1000);
-  }
+  
 
-  handleDelete = (selectId) => {
-    const newMovies = this.state.movies.filter(
-      ({ movie }) => movie._id !== selectId
-      );
-      this.setState({ movies: newMovies });
-      console.log(newMovies);
-    try {
-      toast.success("success", selectId);
-    } catch (error) {}
-    // axios.delete(${URL}/movies/${selectId}).then((response) => {
-    //   console.log(response, "success delete");
-    // })
+  handleDelete = async (selectId) => {
+   
   };
 
   render() {
-    // if (this.state.loading) return <Loader />;
 
     const { movies, genres, genreID, pageSize, currentPage } = this.state;
 
